@@ -56,9 +56,9 @@ porechop/porechop-0.2.4:
     Description: Porechop trims adaptors from seqenced DNA fragments. This is a data cleaning step that is conducted after experimental sequencing, before assembly is attempted.
     Input: One or more files in FASTQ/FASTA/FASTQ.gz/FASTA.gz format.
     Output: One FASTQ/FASTA/FASTQ.gz/FASTA.gz file for each input file.
-    Source: https://depot.galaxyproject.org/singularity/porechop%3A0.2.4--py39hc16433a_3
-    Notes: 
-    Working: Partly - can't add new adpators to container as adaptor file is hard coded.
+    Source: porechop-0.2.4.def
+    Notes: To add new adaptors, add them to adaptors.py file and rebuild the container. 
+    Working: Yes
     Example use: porechop -i input_reads.fastq -o output_reads.fastq
     
 prokka/prokka-1.14.6:

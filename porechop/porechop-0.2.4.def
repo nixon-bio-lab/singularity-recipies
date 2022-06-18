@@ -1,0 +1,27 @@
+Bootstrap: docker
+From: python:3.10.5-slim
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y git build-essential
+    mkdir porechop
+    cd porechop
+    git clone -b v0.2.4 --depth 1 https://github.com/rrwick/Porechop.git .
+    make
+ 
+    rm -rf .git
+
+Bootstrap: docker
+From: python:3.10.5-slim
+Stage: final
+
+%files from devel
+    /porechop/ /porechop
+
+%files
+    /opt/containers/porechop/adapters.py /porechop/porechop/adapters.py
+
+%post
+    ln -s /porechop/porechop-runner.py /bin/porechop 
+
