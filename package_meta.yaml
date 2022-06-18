@@ -12,9 +12,10 @@ dram/dram-1.3.5:
     
 flye/flye-2.9:
     Version: 2.9
+    Description: Flye is a de novo DNA sequence assembler that assembles longer sequences of DNA from fragments. De novo means that the assembly is based on the overlap between fragments rather than by reference to a database of known sequences.
     Source: https://depot.galaxyproject.org/singularity/flye%3A2.9--py39h6935b12_1
     Notes: 
-    Working: Untested
+    Working: Yes
     
 gtdbtk/gtdbtk-2.1.0:
     Version: 2.1.0
@@ -24,15 +25,19 @@ gtdbtk/gtdbtk-2.1.0:
     
 medaka/medaka-1.6.0:
     Version: 1.6.0
+    Description: Medaka improves draft seqences assembled by Flye 
     Source: https://depot.galaxyproject.org/singularity/medaka%3A1.6.0--py38h84d2cc8_0
     Notes: 
-    Working: Untested
+      - The medaka_consensus binary runs medaka with a set of default parameters.
+      - The tensorflow library creates some warnings on the command line but these can be ignored
+      - The trained models used for the machine learning component don't seem to be included in the container but these can be downloaded and referenced easily. 
+    Working: Yes
     
-medaka/medaka-1.6.0_custom: 
+medaka/medaka-1.6.0_ubuntu: 
     Version: 1.6.0
     Source: medaka-1.6.0_custom.def
-    Notes: Custom install based on Ubuntu is much larger than docker image but functionally the same.
-    Working: No
+    Notes: Custom install based on Ubuntu is much larger than docker image.
+    Working: No - modern versions of Tensorflow neex AVX instructions which requires changing the CPU type in the VM.
     
 metabolic:
     Version: - 
@@ -43,14 +48,18 @@ metabolic:
 metawrap/metawrap-1.2:
     Version: 1.2
     Source: https://depot.galaxyproject.org/singularity/metawrap%3A1.2--hdfd78af_2
-    Notes: 
-    Working: Untested
+    Notes: Relies on an old version of Checkm. Checkm requires access to database files which are not linked correctly in the image.
+    Working: No
     
 porechop/porechop-0.2.4:
     Version: 0.2.4
+    Description: Porechop trims adaptors from seqenced DNA fragments. This is a data cleaning step that is conducted after experimental sequencing, before assembly is attempted.
+    Input: One or more files in FASTQ/FASTA/FASTQ.gz/FASTA.gz format.
+    Output: One FASTQ/FASTA/FASTQ.gz/FASTA.gz file for each input file.
     Source: https://depot.galaxyproject.org/singularity/porechop%3A0.2.4--py39hc16433a_3
     Notes: 
-    Working: Untested
+    Working: Partly - can't add new adpators to container as adaptor file is hard coded.
+    Example use: porechop -i input_reads.fastq -o output_reads.fastq
     
 prokka/prokka-1.14.6:
     Version: 1.14.6
@@ -61,7 +70,9 @@ prokka/prokka-1.14.6:
 roary/roary-3.13.0:
     Version: 3.13.0
     Source: https://depot.galaxyproject.org/singularity/roary%3A3.13.0--pl526h516909a_0
-    Notes: Results must be output to a directory 
+    Notes: 
+      - Results must be output to a directory to which you have write access.
+      - There is a warning message about locales. This is not a problem but can be supressed using the command `export LC_ALL=C`
     Working: Yes
     
 virsorter/virsorter-2.2.3:
