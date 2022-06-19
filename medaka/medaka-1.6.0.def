@@ -1,0 +1,26 @@
+Bootstrap: docker
+From: ubuntu:20.04
+Stage: build
+
+%environment
+    export TZ=Europe/London
+    export PATH=/medaka/venv/bin/:${PATH}
+
+    # Supress tensorflow warnings
+    export TF_CPP_MIN_LOG_LEVEL=2
+
+%post
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone    
+    apt-get update
+    apt-get -y install bzip2 g++ zlib1g-dev libbz2-dev liblzma-dev libffi-dev libncurses5-dev libcurl4-gnutls-dev libssl-dev curl make cmake wget python3-all-dev python3.8-venv git-lfs file
+    git lfs install
+    mkdir medaka
+    cd medaka
+    git clone -b v1.6.0 --depth 1 https://github.com/nanoporetech/medaka.git .
+    make install
+
+    cp /medaka/medaka/data/* /medaka/venv/lib/python3.8/site-packages/medaka/data
+
+    rm -rf .git
+    apt-get clean
+    rm -rf /var/lib/apt/lists/*
