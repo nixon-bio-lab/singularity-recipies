@@ -22,7 +22,13 @@ gtdbtk/gtdbtk-2.1.0.sif
     Source: https://depot.galaxyproject.org/singularity/gtdbtk%3A2.1.0--pyhdfd78af_5
     Notes: 
     Working: Untested
-    
+
+nextpolish-1.4.0.sif
+    Version: 1.4.0
+    Source: nextpolish-1.4.0.def
+    Notes: Executable is named nextPolish
+    Working: Yes
+
 medaka/medaka-1.6.0.sif
     Version: 1.6.0
     Description: Medaka improves draft seqences assembled by Flye 
@@ -67,7 +73,7 @@ roary/roary-3.13.0.sif:
       - Results must be output to a directory to which you have write access.
       - There is a warning message about locales. This is not a problem but can be supressed using the command `export LC_ALL=C`
     Working: Yes
-    
+
 virsorter/virsorter-2.2.3.sif:
     Version: 2.2.3
     Source: https://depot.galaxyproject.org/singularity/virsorter%3A2.2.3--pyhdfd78af_1

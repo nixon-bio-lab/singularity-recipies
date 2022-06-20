@@ -1,0 +1,39 @@
+Bootstrap: docker
+From: python:3.10.5-slim
+Stage: build
+
+%post
+    apt-get update
+    apt-get -y install wget build-essential libz-dev libbz2-dev libncurses-dev liblzma-dev
+    
+    wget https://github.com/Nextomics/NextPolish/releases/download/v1.4.0/NextPolish.tgz
+    tar -xzf NextPolish.tgz
+
+    cd NextPolish
+    # Delete duplicate variable defintion not allowed by GCC > version 9
+    sed -i '33d' util/bwa/rle.h    
+    make
+
+
+Bootstrap: docker
+From: python:3.10.5-slim
+Stage: final
+
+%environment
+    export LC_ALL=C
+
+%files from build
+    /NextPolish /nextpolish
+
+%post
+    apt-get update
+    apt-get -y install libncurses-dev  # libz-dev libbz2-dev liblzma-dev
+
+    pip install paralleltask
+
+    ln -s /nextpolish/nextPolish /bin/nextPolish
+
+    sed -i 's+./01_rundir+/tmp/nextpolish_test+g' /nextpolish/test_data/run.cfg
+
+    apt-get clean
+    rm -rf /var/lib/apt/lists/*
