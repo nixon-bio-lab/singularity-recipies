@@ -35,7 +35,6 @@ medaka/medaka-1.6.0.sif
     Source: medaka/medaka-1.6.0.def
     Notes: 
       - The medaka_consensus binary runs medaka with a set of default parameters.
-      - Size of image can probably be reduced by refining container - there are many build requirments included in the final image.
     Working: Yes
     
 metabolic:
