@@ -23,16 +23,16 @@ gtdbtk/gtdbtk-2.1.0.sif
     Notes: 
     Working: Untested
 
-nextpolish-1.4.0.sif
+nextpolish/nextpolish-1.4.0.sif
     Version: 1.4.0
-    Source: nextpolish-1.4.0.def
+    Source: nextpolish/nextpolish-1.4.0.def
     Notes: Executable is named nextPolish
     Working: Yes
 
 medaka/medaka-1.6.0.sif
     Version: 1.6.0
     Description: Medaka improves draft seqences assembled by Flye 
-    Source: medaka-1.6.0.def
+    Source: medaka/medaka-1.6.0.def
     Notes: 
       - The medaka_consensus binary runs medaka with a set of default parameters.
       - Size of image can probably be reduced by refining container - there are many build requirments included in the final image.
@@ -55,7 +55,7 @@ porechop/porechop-0.2.4.sif:
     Description: Porechop trims adaptors from seqenced DNA fragments. This is a data cleaning step that is conducted after experimental sequencing, before assembly is attempted.
     Input: One or more files in FASTQ/FASTA/FASTQ.gz/FASTA.gz format.
     Output: One FASTQ/FASTA/FASTQ.gz/FASTA.gz file for each input file.
-    Source: porechop-0.2.4.def
+    Source: porechop/porechop-0.2.4.def
     Notes: To add new adaptors, add them to adaptors.py file and rebuild the container. 
     Working: Yes
     Example use: porechop -i input_reads.fastq -o output_reads.fastq
@@ -72,6 +72,12 @@ roary/roary-3.13.0.sif:
     Notes: 
       - Results must be output to a directory to which you have write access.
       - There is a warning message about locales. This is not a problem but can be supressed using the command `export LC_ALL=C`
+    Working: Yes
+
+unicycler/unicycler-0.5.0.sif
+    Version: 0.5.0
+    Source: unicycler/unicycler-0.5.0.def 
+    Notes:
     Working: Yes
 
 virsorter/virsorter-2.2.3.sif:
