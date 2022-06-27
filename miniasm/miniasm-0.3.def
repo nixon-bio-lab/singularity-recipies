@@ -1,0 +1,37 @@
+Bootstrap: docker
+From: ubuntu:22.04
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y git build-essential libz-dev
+    
+    # Get and build miniasm
+    mkdir miniasm
+    cd miniasm
+    git clone -b v0.3 --depth 1 https://github.com/lh3/miniasm.git .
+    make
+    rm -rf .git
+	
+    # Get and build minimap
+    cd /
+    mkdir minimap
+    cd minimap
+    git clone -b v2.24 --depth 1 https://github.com/lh3/minimap2.git .
+    make
+    rm -rf .git
+
+
+Bootstrap: docker
+From: ubuntu:22.04
+Stage: final
+
+%files from devel
+    /miniasm /miniasm
+    /minimap /minimap
+
+%post
+    ln -s /miniasm/miniasm /bin/miniasm
+    ln -s /minimap/minimap2 /bin/minimap2
+    
+
