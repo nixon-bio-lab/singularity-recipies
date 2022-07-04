@@ -1,0 +1,50 @@
+Bootstrap: docker
+From: python:3.7.13-slim
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y build-essential wget
+
+    #Get and build hmmer	
+    wget http://eddylab.org/software/hmmer/hmmer.tar.gz 
+    tar zxf hmmer.tar.gz
+    cd hmmer-3.3.2
+    ./configure --prefix /usr/local/bin/hmmer
+    make
+    make install
+
+    #get prodigal
+    mkdir /prodigal
+    cd /prodigal
+    wget https://github.com/hyattpd/Prodigal/releases/download/v2.6.3/prodigal.linux
+    mv prodigal.linux prodigal
+    chmod 755 prodigal
+
+Bootstrap: docker
+From: python:3.7.13-slim
+Stage: devel
+
+%environment
+    export PATH=$PATH:/usr/local/bin/hmmer/bin
+
+
+%files from devel
+    /prodigal/prodigal /usr/local/bin
+    /usr/local/bin/hmmer /usr/local/bin
+
+%post
+    apt-get update
+    apt-get install -y wget
+
+    # Install requirements
+    pip install biopython==1.79 pandas==1.3.5 matplotlib==3.5.2 seaborn==0.11.2 numpy==1.19.5 scikit-learn==0.21.3
+
+    mkdir /vibrant
+    cd /vibrant
+    wget https://github.com/AnantharamanLab/VIBRANT/archive/refs/tags/v1.2.1.tar.gz
+    tar zxf v1.2.1.tar.gz
+    rm v1.2.1.tar.gz
+    mv VIBRANT-1.2.1/* .
+    rm -r VIBRANT-1.2.1
+    chmod -R 777 /vibrant

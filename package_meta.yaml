@@ -112,6 +112,16 @@ unicycler/unicycler-0.5.0.sif:
     Website: https://github.com/rrwick/Unicycler
     Working: Yes
 
+vibrant/vibrant-1.2.1.sif:
+    Version: 1.2.1
+    Source: vibrant/vibrant-1.2.1.def
+    Notes:
+        - Databases are not included in the image as they are quite large. They can (and should) be included if this image is used for published work.
+        - Databases are stored in /mnt/data/databases/vibrant
+    Website: https://github.com/AnantharamanLab/VIBRANT
+    Working: Yes
+    Example usage: python3 /vibrant/VIBRANT_run.py -i /vibrant/example_data/mixed_example.fasta -folder /mnt/data/my_project_name/vibrant_output -d /mnt/data/databases/vibrant
+
 virsorter/virsorter-2.2.3.sif:
     Version: 2.2.3
     Source: https://depot.galaxyproject.org/singularity/virsorter%3A2.2.3--pyhdfd78af_1
