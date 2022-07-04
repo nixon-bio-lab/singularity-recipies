@@ -91,6 +91,13 @@ roary/roary-3.13.0.sif:
     Website: https://github.com/sanger-pathogens/Roary
     Working: Yes
 
+singlem/singlem-0.13.2.sif:
+    Version: 0.13.2
+    Source: singlem/singlem-0.13.2.def
+    Notes: Built from the authors docker container.
+    Website: https://github.com/wwood/singlem
+    Working: Yes
+
 unicycler/unicycler-0.5.0.sif:
     Version: 0.5.0
     Source: unicycler/unicycler-0.5.0.def 

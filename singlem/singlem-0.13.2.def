@@ -1,0 +1,6 @@
+Bootstrap: docker
+From: wwood/singlem:v0.13.2
+Stage: devel
+
+%post
+    cd /
