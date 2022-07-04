@@ -1,0 +1,43 @@
+Bootstrap: docker
+From: python:3.9.13-slim
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y build-essential wget
+
+    #Get and build hmmer	
+    wget http://eddylab.org/software/hmmer/hmmer.tar.gz 
+    tar zxf hmmer.tar.gz
+    cd hmmer-3.3.2
+    ./configure --prefix /usr/local/bin/hmmer
+    make
+    make install
+
+    #get diamond
+    mkdir /diamond
+    cd /diamond
+    wget http://github.com/bbuchfink/diamond/releases/download/v2.0.14/diamond-linux64.tar.gz
+    tar xzf diamond-linux64.tar.gz
+
+    #get prodigal
+    mkdir /prodigal
+    cd /prodigal
+    wget https://github.com/hyattpd/Prodigal/releases/download/v2.6.3/prodigal.linux
+    mv prodigal.linux prodigal
+
+Bootstrap: docker
+From: python:3.9.13-slim
+Stage: devel
+
+%environment
+    export CHECKVDB=/mnt/data/databases/checkv/checkv-db-v1.2
+
+%files from devel
+    /diamond/diamond /usr/local/bin
+    /prodigal/prodigal /usr/local/bin
+    /usr/local/bin/hmmer /usr/local/bin
+
+%post
+    pip install checkv
+
