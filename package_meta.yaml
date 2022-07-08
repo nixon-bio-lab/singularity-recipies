@@ -105,6 +105,13 @@ singlem/singlem-0.13.2.sif:
     Website: https://github.com/wwood/singlem
     Working: Yes
 
+taxator-tk/taxator-tk-1.5.0.sif:
+    Version: 1.5.0
+    Source: taxator-tk/taxator-tk-1.5.0.sif
+    Notes: Only the core functions are installed, not the extended pipeline
+    Website: https://github.com/fungs/taxator-tk
+    Working: Yes
+
 unicycler/unicycler-0.5.0.sif:
     Version: 0.5.0
     Source: unicycler/unicycler-0.5.0.def 

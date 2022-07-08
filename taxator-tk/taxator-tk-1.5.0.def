@@ -1,0 +1,26 @@
+Bootstrap: docker
+From: ubuntu:22.04
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y git wget bzip2
+    mkdir taxator
+    cd taxator
+    wget --content-disposition https://research.bifo.helmholtz-hzi.de/webapps/wa-download/download.php?id=srExZEdMNQSLgpbqI3KuWR
+    tar -xf taxator-tk_1.5.0e-64bit.tar.bz2
+    rm taxator-tk_1.5.0e-64bit.tar.bz2
+    mv taxator-tk_1.5.0e-64bit/* .
+    rm -r taxator-tk_1.5.0e-64bit
+
+
+Bootstrap: docker
+From: ubuntu:22.04
+Stage: final
+
+%environment
+    export PATH=$PATH:/taxator/bin
+
+%files from devel
+    /taxator /taxator
+
