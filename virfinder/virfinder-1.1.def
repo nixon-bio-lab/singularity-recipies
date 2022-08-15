@@ -1,0 +1,9 @@
+Bootstrap: docker
+From: r-base:4.2.1
+Stage: devel
+
+%post
+    Rscript -e 'install.packages("glmnet", dependencies=TRUE)'
+    Rscript -e 'install.packages("Rcpp", dependencies=TRUE)'
+    
+

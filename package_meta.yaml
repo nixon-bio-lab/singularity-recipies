@@ -155,6 +155,13 @@ vibrant/vibrant-1.2.1.sif:
     Working: Yes
     Example usage: python3 /vibrant/VIBRANT_run.py -i /vibrant/example_data/mixed_example.fasta -folder /mnt/data/my_project_name/vibrant_output -d /mnt/data/databases/vibrant
 
+virfinder/virfinder-1.1.sif:
+    Version: 1.1
+    Source: virfinder/virfinder-1.1.def
+    Notes: Incomplete. Have to pin R package versions which is a pain.
+    Website: https://github.com/jessieren/VirFinder
+    Working: No
+
 virsorter/virsorter-2.2.3.sif:
     Version: 2.2.3
     Source: https://depot.galaxyproject.org/singularity/virsorter%3A2.2.3--pyhdfd78af_1
