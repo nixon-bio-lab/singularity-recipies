@@ -1,0 +1,64 @@
+Bootstrap: docker
+From: python:3.10.5-slim
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y build-essential wget git autoconf
+
+    #Get and build hmmer	
+    wget http://eddylab.org/software/hmmer/hmmer-3.3.2.tar.gz
+    tar zxf hmmer-3.3.2.tar.gz
+    cd hmmer-3.3.2
+    ./configure --prefix /usr/local/bin/hmmer
+    make
+    make install
+
+    #get prodigal
+    mkdir /prodigal
+    cd /prodigal
+    wget https://github.com/hyattpd/Prodigal/releases/download/v2.6.3/prodigal.linux
+    mv prodigal.linux prodigal
+
+    # get tRNSscan
+    mkdir /trnascan
+    cd /trnascan
+    wget http://trna.ucsc.edu/software/trnascan-se-2.0.9.tar.gz
+    tar -xf trnascan-se-2.0.9.tar.gz
+    cd tRNAscan-SE-2.0
+    ./configure --prefix=/trnascan/bin
+    make
+    make install
+
+    # get mmseqs2
+    mkdir /mmseqs2
+    cd /mmseqs2
+    wget https://github.com/soedinglab/MMseqs2/releases/download/13-45111/mmseqs-linux-avx2.tar.gz
+    tar xvfz mmseqs-linux-avx2.tar.gz
+    export PATH=/mmseqs2/mmseqs/bin/:$PATH
+
+    # Get dram
+    # Package doesnt have wheels so build it here move the wheels across and install again in final
+    mkdir /dram
+    cd /dram
+    git clone https://github.com/WrightonLabCSU/DRAM.git .
+    git checkout c1f54b6e20daeb53187827842cc235304e31af78
+    rm -rf .git
+    pip install .
+
+
+Bootstrap: docker
+From: python:3.10.5-slim
+Stage: final
+
+%files from devel
+    /usr/local/bin/hmmer /usr/local/bin
+    /prodigal/prodigal /usr/local/bin
+    /mmseqs2/mmseqs/bin /usr/local/bin
+    /dram /dram
+    /root/.cache/pip/wheels  /root/.cache/pip/wheels
+%post
+    cd /dram
+    # Scipy 1.9.0 breaks current version of scikit-bio
+    pip install scipy!=1.9.0
+    pip install .
