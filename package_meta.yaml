@@ -107,7 +107,14 @@ prokka/prokka-1.14.6.sif:
     Notes: -
     Website: https://github.com/tseemann/prokka
     Working: Yes
-    
+
+raven/raven-1.8.1.sif:
+    Version: 1.8.1
+    Source: raven/raven-1.8.1.def
+    Notes: Build compiles correctly but segfaults when attempting to run
+    Website: https://github.com/lbcb-sci/raven
+    Working: No
+
 roary/roary-3.13.0.sif:
     Version: 3.13.0
     Source: https://depot.galaxyproject.org/singularity/roary%3A3.13.0--pl526h516909a_0

@@ -1,0 +1,29 @@
+Bootstrap: docker
+From: ubuntu:22.04
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y git build-essential libz-dev cmake
+    
+    # Get and build raven
+    mkdir raven
+    cd raven
+    git clone -b 1.8.1 --depth 1 https://github.com/lbcb-sci/raven.git .
+    cmake -S ./ -B./build -DRAVEN_BUILD_EXE=1 -DCMAKE_BUILD_TYPE=Release
+    cmake --build build
+    cmake --install ./build	
+
+#Bootstrap: docker
+#From: ubuntu:22.04
+#Stage: final
+#
+#%files from devel
+#    /miniasm /miniasm
+#    /minimap /minimap
+#
+#%post
+#    ln -s /miniasm/miniasm /bin/miniasm
+#    ln -s /minimap/minimap2 /bin/minimap2
+#    
+#
