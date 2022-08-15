@@ -36,12 +36,15 @@ flye/flye-2.9.sif:
     Website: https://github.com/fenderglass/Flye
     Working: Yes
     
-gtdbtk/gtdbtk-2.1.0.sif:
-    Version: 2.1.0
-    Source: https://depot.galaxyproject.org/singularity/gtdbtk%3A2.1.0--pyhdfd78af_5
-    Notes: -
+gtdbtk/gtdbtk-2.1.1.sif:
+    Version: 2.1.1
+    Source: gtdbtk/gtdbtk-2.1.1.def
+    Notes: 
+        - Databases not included in image
+        - Database location set by GTDBTK_DATA_PATH environment variable
+        - Databases are located at /mnt/data/databases/gtdbtk/release207_v2
     Website: https://github.com/Ecogenomics/GTDBTk
-    Working: Untested
+    Working: Yes
 
 nextpolish/nextpolish-1.4.0.sif:
     Version: 1.4.0

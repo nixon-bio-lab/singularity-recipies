@@ -1,0 +1,80 @@
+Bootstrap: docker
+From: python:3.10.5-slim
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y build-essential wget git autoconf unzip zlib1g-dev libgsl-dev
+
+    #Get and build hmmer	
+    wget http://eddylab.org/software/hmmer/hmmer-3.3.2.tar.gz
+    tar zxf hmmer-3.3.2.tar.gz
+    cd hmmer-3.3.2
+    ./configure --prefix /usr/local/bin/hmmer
+    make
+    make install
+
+    #get prodigal
+    mkdir /prodigal
+    cd /prodigal
+    wget https://github.com/hyattpd/Prodigal/releases/download/v2.6.3/prodigal.linux
+    mv prodigal.linux prodigal
+    chmod 755 prodigal
+
+    # get pplacer
+    mkdir /pplacer
+    cd /pplacer
+    wget https://github.com/matsen/pplacer/releases/download/v1.1.alpha19/pplacer-linux-v1.1.alpha19.zip
+    unzip pplacer-linux-v1.1.alpha19.zip
+    mv pplacer-Linux-v1.1.alpha19 pplacer
+
+    # get fastani
+    mkdir /fastani
+    cd /fastani
+    git clone -b v1.33 --depth 1 https://github.com/ParBLiSS/FastANI.git .
+    ./bootstrap.sh
+    ./configure --prefix=/fastani
+    make
+
+    # get fastree
+    mkdir /fasttree
+    cd /fasttree
+    wget http://www.microbesonline.org/fasttree/FastTree
+    chmod 755 FastTree
+    wget http://www.microbesonline.org/fasttree/FastTreeMP
+    chmod 755 FastTreeMP
+
+    # mash
+    mkdir /mash
+    cd /mash
+    wget https://github.com/marbl/Mash/releases/download/v2.3/mash-Linux64-v2.3.tar
+    tar -xf mash-Linux64-v2.3.tar
+    mv mash-Linux64-v2.3 mash
+
+    # Get gtdbtk
+    mkdir /gtdbtk
+    cd /gtdbtk
+    git clone -b 2.1.1 --depth 1 https://github.com/Ecogenomics/GTDBTk.git .
+    rm -rf .git
+
+
+Bootstrap: docker
+From: python:3.10.5-slim
+Stage: final
+
+%environment
+    export PATH=/pplacer:${PATH}
+    export GTDBTK_DATA_PATH="/mnt/data/databases/gtdbtk/release207_v2"
+
+%files from devel
+    /usr/local/bin/hmmer/bin/ /usr/local/bin
+    /prodigal/prodigal /usr/local/bin
+    /pplacer/pplacer/ /pplacer
+    /fastani/fastANI /usr/local/bin  
+    /fasttree/ /usr/local/bin
+    /mash/mash/mash /usr/local/bin
+    /gtdbtk /gtdbtk
+
+%post
+    cd /gtdbtk
+    pip install .
