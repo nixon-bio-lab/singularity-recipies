@@ -1,0 +1,107 @@
+## Not finished!
+
+Bootstrap: docker
+From: perl:5.36.0-slim
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y git build-essential wget cmake libbz2-dev liblzma-dev unzip
+
+    # Get and build hmmer
+    wget http://eddylab.org/software/hmmer/hmmer-3.3.2.tar.gz
+    tar zxf hmmer-3.3.2.tar.gz
+    cd hmmer-3.3.2
+    ./configure --prefix /usr/local/bin/hmmer
+    make
+    make install
+
+    # Get prodigal
+    mkdir /prodigal
+    cd /prodigal
+    wget https://github.com/hyattpd/Prodigal/releases/download/v2.6.3/prodigal.linux
+    mv prodigal.linux prodigal
+
+    # Get sambamba
+    mkdir /sambamba
+    cd /sambamba
+    wget https://github.com/biod/sambamba/releases/download/v0.8.2/sambamba-0.8.2-linux-amd64-static.gz
+    gunzip sambamba-0.8.2-linux-amd64-static.gz
+    mv sambamba-0.8.2-linux-amd64-static sambamba
+    chmod 755 sambamba
+
+    # Get bamtools
+    mkdir /bamtools
+    cd /bamtools
+    git clone -b v2.5.2 --depth=1 https://github.com/pezmaster31/bamtools.git .
+    mkdir build
+    cd build
+    cmake -DCMAKE_INSTALL_PREFIX=/bamtools/bin ..
+    make
+
+    # Get CoverM
+    mkdir /coverm
+    cd /coverm
+    wget https://github.com/wwood/CoverM/releases/download/v0.6.1/coverm-x86_64-unknown-linux-musl-0.6.1.tar.gz
+    tar zxf coverm-x86_64-unknown-linux-musl-0.6.1.tar.gz
+    mv coverm-x86_64-unknown-linux-musl-0.6.1/* .
+
+    # get diamond
+    mkdir /diamond
+    cd /diamond
+    wget http://github.com/bbuchfink/diamond/releases/download/v2.0.14/diamond-linux64.tar.gz
+    tar xzf diamond-linux64.tar.gz
+
+    # Get samtools
+    mkdir /samtools
+    cd /samtools
+    wget https://github.com/samtools/samtools/releases/download/1.15.1/samtools-1.15.1.tar.bz2
+    tar xvf samtools-1.15.1.tar.bz2
+    cd samtools-1.15.1
+    ./configure --prefix=/samtools --without-curses
+    make
+    make install
+
+    # Get bowtie
+    mkdir /bowtie
+    cd /bowtie
+    wget https://github.com/BenLangmead/bowtie2/releases/download/v2.4.5/bowtie2-2.4.5-linux-x86_64.zip
+    unzip bowtie2-2.4.5-linux-x86_64.zip
+    mv bowtie2-2.4.5-linux-x86_64 bowtie
+ 
+    # Get minimap2
+    mkdir /minimap2
+    cd /minimap2
+    git clone -b v2.24 --depth=1 https://github.com/lh3/minimap2.git .
+    make
+
+    # Get metabolic
+    mkdir /metabolic
+    cd /metabolic
+    git clone -b v4.0 --depth=1 https://github.com/AnantharamanLab/METABOLIC.git .
+ 
+#Bootstrap: docker
+#From: python:3.10.5-slim
+#Stage: final
+#
+#%environment
+#    export PATH=$PATH:/usr/bin/local/samtools:/bowtie
+#
+#%post
+#    apt-get install r-base=3.6.3-2
+#
+#    perl -MCPAN -e 'install Data::Dumper; \
+#                    install POSIX; \
+#                    install Getopt::Long'
+#
+#%files from devel
+#    /usr/local/bin/hmmer /usr/local/bin
+#    /prodigal/prodigal /usr/local/bin
+#    /sambamba/sambamba /usr/local/bin
+#    /coverm/coverm /usr/local/bin
+#    /coverm/remove_minimap2_duplicated_headers /usr/local/bin
+#    /diamond/diamond /usr/local/bin
+#    /samtools/bin/* /usr/local/bin/samtools
+#    /bowtie/bowtie/bowtie2* /usr/local/bin
+#    /minimap2/minimap2 /usr/local/bin
+#    /metabolic/* /metabolic

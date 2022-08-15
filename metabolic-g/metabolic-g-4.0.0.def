@@ -1,0 +1,53 @@
+#Bootstrap: docker
+#From: perl:5.36.0-slim
+#Stage: devel
+#
+#%post
+#    apt-get update
+#    apt-get install -y git build-essential wget cmake libbz2-dev liblzma-dev unzip
+#
+#    # Get and build hmmer
+#    wget http://eddylab.org/software/hmmer/hmmer-3.3.2.tar.gz
+#    tar zxf hmmer-3.3.2.tar.gz
+#    cd hmmer-3.3.2
+#    ./configure --prefix /usr/local/bin/hmmer
+#    make
+#    make install
+#
+#    # Get prodigal
+#    mkdir /prodigal
+#    cd /prodigal
+#    wget https://github.com/hyattpd/Prodigal/releases/download/v2.6.3/prodigal.linux
+#    mv prodigal.linux prodigal
+#
+#    # get diamond
+#    mkdir /diamond
+#    cd /diamond
+#    wget http://github.com/bbuchfink/diamond/releases/download/v2.0.14/diamond-linux64.tar.gz
+#    tar xzf diamond-linux64.tar.gz
+#
+#    # Get metabolic
+#    mkdir /metabolic
+#    cd /metabolic
+#    git clone -b v4.0 --depth=1 https://github.com/AnantharamanLab/METABOLIC.git .
+ 
+Bootstrap: docker
+From: r-base:3.6.3
+Stage: final
+
+%post
+    cpan NWCLARK/Data-Dumper-2.183.tar.gz
+    cpan JV/Getopt-Long-2.52.tar.gz
+    cpan SHLOMIF/Statistics-Descriptive-3.0800.tar.gz
+    cpan CJFIELDS/BioPerl-1.7.8.tar.gz
+    cpan CJFIELDS/Bio-Procedural-1.7.4.tar.gz
+    cpan XSAWYERX/Carp-1.50.tar.gz
+    cpan XSAWYERX/PathTools-3.75.tar.gz
+    cpan RJBS/perl-5.36.0.tar.gz
+    cpan YANICK/Parallel-ForkManager-2.02
+
+#%files from devel
+#    /usr/local/bin/hmmer /usr/local/bin
+#    /prodigal/prodigal /usr/local/bin
+#    /diamond/diamond /usr/local/bin
+#    /metabolic/* /metabolic/

@@ -46,13 +46,6 @@ gtdbtk/gtdbtk-2.1.1.sif:
     Website: https://github.com/Ecogenomics/GTDBTk
     Working: Yes
 
-nextpolish/nextpolish-1.4.0.sif:
-    Version: 1.4.0
-    Source: nextpolish/nextpolish-1.4.0.def
-    Notes: Executable is named nextPolish
-    Website: https://github.com/Nextomics/NextPolish
-    Working: Yes
-
 medaka/medaka-1.6.0.sif:
     Version: 1.6.0
     Description: Medaka improves draft seqences assembled by Flye 
@@ -62,12 +55,19 @@ medaka/medaka-1.6.0.sif:
     Website: https://github.com/nanoporetech/medaka
     Working: Yes
     
-metabolic:
-    Version: - 
-    Source: -
-    Notes: No known existing container
+metabolic-c/metabolic-c-4.0.0.sif:
+    Version: 4.0.0 
+    Source: metabolic-c/metabolic-c-4.0.0.def
+    Notes: Metabolic-c is the more complex of the two metabolic variants, it has many more dependencies
     Website: https://github.com/AnantharamanLab/METABOLIC
-    Working: Untested
+    Working: Not finished
+    
+metabolic-g/metabolic-g-4.0.0.sif:
+    Version: 4.0.0 
+    Source: metabolic-g/metabolic-g-4.0.0.def
+    Notes: Metabolic-c is the more simpler of the two metabolic variants, it has fewer dependencies
+    Website: https://github.com/AnantharamanLab/METABOLIC
+    Working: Not finished
     
 metawrap/metawrap-1.2.sif:
     Version: 1.2
@@ -81,6 +81,13 @@ miniasm/miniasm-0.3.sif:
     Source: miniasm/miniasm-0.3.def
     Notes: -
     Website: https://github.com/lh3/miniasm
+    Working: Yes
+
+nextpolish/nextpolish-1.4.0.sif:
+    Version: 1.4.0
+    Source: nextpolish/nextpolish-1.4.0.def
+    Notes: Executable is named nextPolish
+    Website: https://github.com/Nextomics/NextPolish
     Working: Yes
 
 porechop/porechop-0.2.4.sif:
