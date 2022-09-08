@@ -8,6 +8,7 @@ Stage: devel
     mkdir idba
     cd idba
     git clone -b 1.1.3 --depth 1 https://github.com/loneknightpy/idba.git .
+    sed -i 's/kMaxShortSequence = 128/kMaxShortSequence = 256/g' src/sequence/short_sequence.h
     ./build.sh
  
     make check    
