@@ -1,0 +1,29 @@
+Bootstrap: docker
+From: ubuntu:20.04
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y git build-essential automake
+    mkdir idba
+    cd idba
+    git clone -b 1.1.3 --depth 1 https://github.com/loneknightpy/idba.git .
+    ./build.sh
+ 
+    make check    
+
+    rm -rf .git
+
+Bootstrap: docker
+From: ubuntu:20.04
+Stage: final
+
+%environment
+    export PATH=$PATH:/idba/bin
+
+%files from devel
+    /idba/bin /idba/bin
+
+%post
+    apt-get update
+    apt-get install -y gcc
