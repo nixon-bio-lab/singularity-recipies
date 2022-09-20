@@ -24,9 +24,11 @@ checkv/checkv-0.9.0.sif:
 dram/dram-1.3.6.sif:
     Version: 1.3.6
     Source: dram/dram-1.3.6.def
-    Notes: Databases not yet set up
+    Notes:
+        - Most databases stored in /mnt/scratch/dram
+        - Description database and CONFIG file stored in /mnt/data/databases/dram
     Website: https://github.com/WrightonLabCSU/DRAM
-    Working: Untested
+    Working: Yes
     
 flye/flye-2.9.sif:
     Version: 2.9
