@@ -140,6 +140,13 @@ roary/roary-3.13.0.sif:
     Website: https://github.com/sanger-pathogens/Roary
     Working: Yes
 
+samtools/samtools-1.16.1.sif:
+    Version: 1.16.1
+    Source: samtools/samtools-1.16.1.def
+    Notes: -
+    Website: https://github.com/samtools/samtools
+    Working: Untested
+
 singlem/singlem-0.13.2.sif:
     Version: 0.13.2
     Source: singlem/singlem-0.13.2.def
