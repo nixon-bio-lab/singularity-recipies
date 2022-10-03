@@ -7,6 +7,13 @@ blast+/blast+-2.3.0.sif:
     Website: https://blast.ncbi.nlm.nih.gov/Blast.cgi
     Working: Yes
 
+bowtie/bowtie-2.4.5.sif:
+    Version: 2.4.5
+    Source: bowtie/bowtie-2.4.5.def
+    Notes: -
+    Website: https://github.com/BenLangmead/bowtie2
+    Working: Untested
+
 checkm/checkm-1.2.0.sif:
     Version: 1.2.0
     Source: https://depot.galaxyproject.org/singularity/checkm-genome%3A1.2.0--pyhdfd78af_0

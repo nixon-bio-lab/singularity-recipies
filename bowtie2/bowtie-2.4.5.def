@@ -1,0 +1,23 @@
+Bootstrap: docker
+From: perl:5.36.0
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y build-essential git curl libz-dev 
+
+    #Get and build bowtie
+    mkdir /bowtie
+    cd /bowtie	
+    git clone -b v2.4.5 --depth 1 https://github.com/BenLangmead/bowtie2.git .
+    make static-libs && make STATIC_BUILD=1
+
+Bootstrap: docker
+From: perl:5.36.0
+Stage: final
+
+%environment
+    export LC_ALL=C
+
+%files from devel
+    /bowtie/bowtie2* /usr/local/bin
