@@ -1,6 +1,6 @@
 blast+/blast+-2.3.0.sif:
     Version: 2.3.0
-    Source: blast+/blast+-2.3.0/def
+    Source: blast+/blast+-2.3.0.def
     Notes: 
         - Based on a Redhat rather than a debian base image
         - No databases are included or configured in the image
