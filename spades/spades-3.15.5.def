@@ -1,0 +1,17 @@
+Bootstrap: docker
+From: python:3.10.8-slim
+Stage: final
+
+%environment
+    export PATH=$PATH:/spades/SPAdes-3.15.5-Linux/bin/
+
+%post
+    apt-get update
+    apt-get -y install wget
+
+    #get spades
+    mkdir /spades
+    cd spades
+    wget http://cab.spbu.ru/files/release3.15.5/SPAdes-3.15.5-Linux.tar.gz
+    tar -xzf SPAdes-3.15.5-Linux.tar.gz
+    rm SPAdes-3.15.5-Linux.tar.gz

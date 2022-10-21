@@ -154,6 +154,13 @@ singlem/singlem-0.13.2.sif:
     Website: https://github.com/wwood/singlem
     Working: Yes
 
+spades/spades-3.15.0.sif:
+    Version: 3.15.0
+    Source: spades/spades-3.15.0.def
+    Notes: -
+    Website: https://github.com/ablab/spades
+    Working: Yes
+
 taxator-tk/taxator-tk-1.5.0.sif:
     Version: 1.5.0
     Source: taxator-tk/taxator-tk-1.5.0.sif

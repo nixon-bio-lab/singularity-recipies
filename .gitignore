@@ -1,3 +1,4 @@
 *.sif
 /medaka/test
 test_results/
+spades_test/
