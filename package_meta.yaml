@@ -175,6 +175,14 @@ taxator-tk/taxator-tk-1.5.0.sif:
     Website: https://github.com/fungs/taxator-tk
     Working: Yes
 
+trimmomatic/trimomatic-0.39.sif:
+    Version: 0.39
+    Source: trimmomatic/trimomatic-0.39.sif
+    Notes: -
+    Website: https://github.com/usadellab/Trimmomatic
+    Working: Yes
+
+
 unicycler/unicycler-0.5.0.sif:
     Version: 0.5.0
     Source: unicycler/unicycler-0.5.0.def 

@@ -1,0 +1,25 @@
+Bootstrap: docker
+From: eclipse-temurin:17.0.4.1_1-jre-jammy
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y wget unzip
+    mkdir /trimmomatic
+    cd /trimmomatic
+    wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip
+    unzip Trimmomatic-0.39.zip && rm Trimmomatic-0.39.zip
+
+Bootstrap: docker
+From: eclipse-temurin:17.0.4.1_1-jre-jammy
+Stage: final
+
+%environment
+    export PATH=$PATH:/trimmomatic/Trimmomatic-0.39
+    export PATH=$PATH:/trimmomatic/Trimmomatic-0.39/adapters
+
+%files from devel
+    /trimmomatic /trimmomatic
+
+%post
+    chmod 755 /trimmomatic/Trimmomatic-0.39/trimmomatic-0.39.jar
