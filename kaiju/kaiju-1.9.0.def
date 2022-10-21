@@ -1,0 +1,31 @@
+Bootstrap: docker
+From: ubuntu:22.04
+Stage: devel
+
+%post
+    apt-get update
+    apt-get -y install git build-essential libz-dev
+
+    #install kaiju
+    mkdir /kaiju
+    cd /kaiju
+    git clone -b v1.9.0 --depth 1 https://github.com/bioinformatics-centre/kaiju.git .
+    cd src
+    make
+
+
+Bootstrap: docker
+From: ubuntu:22.04
+Stage: final
+
+%environment
+    export PATH=$PATH:/kaiju/bin
+
+%files from devel
+    /kaiju/bin /kaiju/bin
+    /kaiju/util /kaiju/util
+
+%post
+    apt-get update
+    # Required for fetching reference databases
+    apt-get install -y curl wget bzip2
