@@ -15,6 +15,7 @@ Stage: devel
     ./configure --prefix=/samtools --without-curses
     make
     make install
+    rm /samtools/samtools-1.16.1.tar.bz2
 
 
 Bootstrap: docker
@@ -23,7 +24,8 @@ Stage: final
 
 %environment
     export LC_ALL=C
+    export PATH=$PATH:/samtools/bin
 
 %files from devel
-    /samtools/bin/* /usr/local/bin/samtools
+    /samtools/ /samtools
 
