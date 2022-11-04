@@ -1,0 +1,18 @@
+Bootstrap: docker
+From: eclipse-temurin:17.0.4.1_1-jre-jammy
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install wget
+    mkdir /picard
+    cd /picard
+    wget https://github.com/broadinstitute/picard/releases/download/2.27.5/picard.jar
+
+Bootstrap: docker
+From: eclipse-temurin:17.0.4.1_1-jre-jammy
+Stage: final
+
+%files from devel
+    /picard/ /picard
+
