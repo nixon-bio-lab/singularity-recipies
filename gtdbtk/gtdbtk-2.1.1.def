@@ -31,10 +31,8 @@ Stage: devel
     # get fastani
     mkdir /fastani
     cd /fastani
-    git clone -b v1.33 --depth 1 https://github.com/ParBLiSS/FastANI.git .
-    ./bootstrap.sh
-    ./configure --prefix=/fastani
-    make
+    wget https://github.com/ParBLiSS/FastANI/releases/download/v1.33/fastANI-Linux64-v1.33.zip
+    unzip fastANI-Linux64-v1.33.zip
 
     # get fastree
     mkdir /fasttree
