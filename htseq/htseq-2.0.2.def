@@ -3,8 +3,6 @@ From: python:3.10.8-slim
 Stage: devel
 
 %post
-    apt-get update
-    apt-get install -y pip
-    pip install 'HTSeq==2.0.2'
+    pip install HTSeq==2.0.2
 
 
