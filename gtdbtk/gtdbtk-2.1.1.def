@@ -31,8 +31,12 @@ Stage: devel
     # get fastani
     mkdir /fastani
     cd /fastani
-    wget https://github.com/ParBLiSS/FastANI/releases/download/v1.33/fastANI-Linux64-v1.33.zip
-    unzip fastANI-Linux64-v1.33.zip
+    wget https://github.com/ParBLiSS/FastANI/archive/refs/tags/v1.33.zip
+    unzip v1.33.zip
+    cd FastANI-1.33
+    ./bootstrap.sh
+    ./configure
+    make
 
     # get fastree
     mkdir /fasttree
@@ -68,11 +72,13 @@ Stage: final
     /usr/local/bin/hmmer/bin/ /usr/local/bin
     /prodigal/prodigal /usr/local/bin
     /pplacer/pplacer/ /pplacer
-    /fastani/fastANI /usr/local/bin  
+    /fastani/FastANI-1.33/fastANI /usr/local/bin  
     /fasttree/ /usr/local/bin
     /mash/mash/mash /usr/local/bin
     /gtdbtk /gtdbtk
 
 %post
+    apt-get update
+    apt-get install -y build-essential zlib1g-dev libgsl-dev
     cd /gtdbtk
     pip install .
