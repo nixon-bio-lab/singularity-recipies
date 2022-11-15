@@ -1,0 +1,25 @@
+Bootstrap: docker
+From: ubuntu:20.04
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y build-essential wget hmmer ruby-full parallel
+    mkdir /kofamscan
+    cd /kofamscan
+    wget https://www.genome.jp/ftp/tools/kofam_scan/kofam_scan-1.3.0.tar.gz
+    tar xvzf kofam_scan-1.3.0.tar.gz
+    
+
+Bootstrap: docker
+From: ubuntu:20.04
+Stage: final
+
+%post
+    apt-get update
+    apt-get install -y ruby-full hmmer parallel
+%environment
+    export PATH=$PATH:/idba/bin
+
+%files from devel
+    kofamscan/kofam_scan-1.3.0/* /usr/local/bin/
