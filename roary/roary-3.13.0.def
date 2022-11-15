@@ -1,0 +1,34 @@
+Bootstrap: docker
+From: ubuntu:22.04
+Stage: final
+
+%environment
+    export LC_ALL=C
+
+%post
+    apt-get update
+    apt-get -y install ncbi-blast+ mcl cd-hit parallel mafft wget
+
+    #install bedtools
+    wget https://github.com/arq5x/bedtools2/releases/download/v2.30.0/bedtools-2.30.0.tar.gz
+    mkdir /bedtools
+    tar -xf bedtools-2.30.0.tar.gz -C /bedtools
+    rm bedtools-2.30.0.tar.gz
+
+    # install prank
+    wget http://wasabiapp.org/download/prank/prank.linux64.170427.tgz
+    mkdir /prank
+    tar -xf prank.linux64.170427.tgz -C /prank
+    rm prank.linux64.170427.tgz
+
+    #install fasttree
+    wget http://www.microbesonline.org/fasttree/FastTree
+    chmod 777 FastTree
+    mv FastTree /usr/local/bin
+
+    # Clean up
+    rm -r /var/lib/apt/lists
+
+%post
+    ln -s /porechop/porechop-runner.py /bin/porechop 
+
