@@ -1,0 +1,6 @@
+Bootstrap: docker
+From: antismash/standalone:6.1.1
+Stage: devel
+
+%post
+    cd /
