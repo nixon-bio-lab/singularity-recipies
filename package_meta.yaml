@@ -16,9 +16,9 @@ blast+/blast+-2.3.0.sif:
     Website: https://blast.ncbi.nlm.nih.gov/Blast.cgi
     Working: Yes
 
-bowtie/bowtie-2.4.5.sif:
+bowtie2/bowtie-2.4.5.sif:
     Version: 2.4.5
-    Source: bowtie/bowtie-2.4.5.def
+    Source: bowtie2/bowtie-2.4.5.def
     Notes: -
     Website: https://github.com/BenLangmead/bowtie2
     Working: Untested
@@ -104,7 +104,7 @@ metabolic-c/metabolic-c-4.0.0.sif:
 metabolic-g/metabolic-g-4.0.0.sif:
     Version: 4.0.0 
     Source: metabolic-g/metabolic-g-4.0.0.def
-    Notes: Metabolic-c is the more simpler of the two metabolic variants, it has fewer dependencies
+    Notes: Metabolic-g is the more simpler of the two metabolic variants, it has fewer dependencies
     Website: https://github.com/AnantharamanLab/METABOLIC
     Working: Not finished
     
@@ -185,8 +185,8 @@ singlem/singlem-0.13.2.sif:
     Working: Yes
 
 spades/spades-3.15.0.sif:
-    Version: 3.15.0
-    Source: spades/spades-3.15.0.def
+    Version: 3.15.5
+    Source: spades/spades-3.15.5.def
     Notes: -
     Website: https://github.com/ablab/spades
     Working: Yes
@@ -200,7 +200,7 @@ taxator-tk/taxator-tk-1.5.0.sif:
 
 trimmomatic/trimomatic-0.39.sif:
     Version: 0.39
-    Source: trimmomatic/trimomatic-0.39.sif
+    Source: trimmomatic/trimommatic-0.39.sif
     Notes: -
     Website: https://github.com/usadellab/Trimmomatic
     Working: Yes

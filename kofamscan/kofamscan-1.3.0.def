@@ -18,8 +18,9 @@ Stage: final
 %post
     apt-get update
     apt-get install -y ruby-full hmmer parallel
+
 %environment
-    export PATH=$PATH:/idba/bin
+    export LC_ALL=C
 
 %files from devel
     kofamscan/kofam_scan-1.3.0/* /usr/local/bin/
