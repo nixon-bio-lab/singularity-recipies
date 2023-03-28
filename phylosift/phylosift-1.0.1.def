@@ -1,0 +1,46 @@
+Bootstrap: docker
+From: perl:5.36.0
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y build-essential wget
+
+    # Get phylosift
+    mkdir /phylosift
+    cd /phylosift
+    wget https://ndownloader.figshare.com/files/10446663 -O phylosift_v1.0.1.tar.bz2
+    tar xvf phylosift_v1.0.1.tar.bz2
+    rm phylosift_v1.0.1.tar.bz2
+    rm phylosift_v1.0.1/bin/cmalign
+    echo '\n$marker_dir="/share/phylosift/markers";' >> phylosift_v1.0.1/phylosiftrc
+    echo '$ncbi_dir="/share/phylosift/ncbi";' >> phylosift_v1.0.1/phylosiftrc 
+    echo '$cmalign = "/usr/bin/cmalign";' >> phylosift_v1.0.1/phylosiftrc
+    grep -v '$marker_base_url = "http://edhar.genomecenter.ucdavis.edu/~koadman/phylosift_markers";' phylosift_v1.0.1/phylosiftrc > phylosift_v1.0.1/phylosiftrc_tmp
+    rm phylosift_v1.0.1/phylosiftrc
+    grep -v '$ncbi_url = "http://edhar.genomecenter.ucdavis.edu/~koadman/ncbi.tgz";' phylosift_v1.0.1/phylosiftrc_tmp > phylosift_v1.0.1/phylosiftrc
+
+Bootstrap: docker
+From: perl:5.36.0
+Stage: final
+
+%environment
+    export LC_ALL=C
+    export PATH=$PATH:/phylosift/bin
+    export PATH=$PATH:/phylosift/
+
+%files from devel
+    /phylosift/phylosift_v1.0.1/ /phylosift/
+
+%post
+    apt-get update
+    apt-get install infernal infernal-doc
+    mkdir /share
+    mkdir /share/phylosift
+    cd /share/phylosift
+    wget https://ndownloader.figshare.com/files/10458622 -O markers.tar.bz2
+    wget https://ndownloader.figshare.com/files/10140729 -O ncbi.tar.bz2
+    tar xvf markers.tar.bz2
+    tar xvf ncbi.tar.bz2
+    rm markers.tar.bz2
+    rm ncbi.tar.bz2

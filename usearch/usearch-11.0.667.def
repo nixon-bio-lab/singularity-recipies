@@ -1,0 +1,22 @@
+Bootstrap: docker
+From: ubuntu:22.04
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y wget
+
+    wget https://www.drive5.com/downloads/usearch11.0.667_i86linux32.gz
+    gunzip usearch11.0.667_i86linux32.gz
+    mv usearch11.0.667_i86linux32 usearch
+    chmod 755 usearch
+
+Bootstrap: docker
+From: ubuntu:22.04
+Stage: final
+
+%files from devel
+    /usearch /usearch
+    
+%post
+    ln -s /usearch /bin/usearch
