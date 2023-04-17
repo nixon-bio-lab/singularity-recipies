@@ -1,0 +1,25 @@
+Bootstrap: docker
+From: eclipse-temurin:17.0.4.1_1-jre-jammy
+Stage: devel
+
+%post
+    apt-get update
+    apt-get install -y wget unzip
+    mkdir /pilon      
+    cd /pilon      
+    wget https://github.com/broadinstitute/pilon/releases/download/v1.24/pilon-1.24.jar     
+
+Bootstrap: docker
+From: eclipse-temurin:17.0.4.1_1-jre-jammy
+Stage: final
+
+%files from devel
+    /pilon /pilon
+
+%post
+    chmod 755 /pilon/pilon-1.24.jar    
+    echo -e "#!/bin/sh\njava -jar /pilon/pilon-1.24.jar" > /pilon/pilon
+    chmod 755 /pilon/pilon
+
+%environment
+    export PATH=$PATH:/pilon    
