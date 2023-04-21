@@ -18,8 +18,8 @@ Stage: final
 
 %post
     chmod 755 /pilon/pilon-1.24.jar    
-    echo -e "#!/bin/sh\njava -jar /pilon/pilon-1.24.jar" > /pilon/pilon
+    echo "#!/bin/sh\njava -jar /pilon/pilon-1.24.jar" > /pilon/pilon
     chmod 755 /pilon/pilon
-
+#you now can run pilon by just typing pilon, and don't need to type the full path to the jar file
 %environment
     export PATH=$PATH:/pilon    
