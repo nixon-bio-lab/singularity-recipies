@@ -2,9 +2,16 @@ antismash/antismash-6.1.1.sif:
     Version: 6.1.1
     Source: antismash/antismash-6.1.1.def
     Notes:
-        - Recipe directly copies a Docker container privded bty the developers
+        - Recipe directly copies a Docker container privded by the developers
         - Large image size is due to embedded databases
     Website: https://github.com/antismash/antismash
+    Working: Yes
+
+binsanity/binsanity-0.5.4.sif:
+    Version: 0.5.4
+    Source: https://depot.galaxyproject.org/singularity/binsanity%3A0.5.4--pyh5e36f6f_0
+    Notes: -
+    Website: https://github.com/edgraham/BinSanity
     Working: Untested
 
 blast+/blast+-2.3.0.sif:
@@ -37,6 +44,13 @@ checkv/checkv-0.9.0.sif:
     Website: https://bitbucket.org/berkeleylab/checkv/src/master/
     Working: Yes
 
+dastool/dastool-1.1.6.sif:
+    Version: 1.1.6
+    Source: https://depot.galaxyproject.org/singularity/das_tool%3A1.1.6--r42hdfd78af_0
+    Notes: -
+    Website: https://github.com/cmks/DAS_Tool 
+    Working: Yes
+
 dram/dram-1.3.6.sif:
     Version: 1.3.6
     Source: dram/dram-1.3.6.def
@@ -44,6 +58,13 @@ dram/dram-1.3.6.sif:
         - Most databases stored in /mnt/scratch/dram
         - Description database and CONFIG file stored in /mnt/data/databases/dram
     Website: https://github.com/WrightonLabCSU/DRAM
+    Working: Yes
+
+ezaai/ezaai-1.2.2.sif:
+    Version: 1.1.2
+    Source: https://depot.galaxyproject.org/singularity/ezaai%3A1.2.2--hdfd78af_0
+    Notes: -
+    Website: https://github.com/endixk/ezaai
     Working: Yes
     
 flye/flye-2.9.sif:
@@ -53,6 +74,13 @@ flye/flye-2.9.sif:
     Notes: -
     Website: https://github.com/fenderglass/Flye
     Working: Yes
+
+graphbin2/graphbin2-1.1.sif:
+    Version: 1.1
+    Source: graphbin2/graphbin2-1.1.def
+    Notes: -
+    Website: https://github.com/metagentools/GraphBin2
+    Working: Untested
     
 gtdbtk/gtdbtk-2.1.1.sif:
     Version: 2.1.1
@@ -62,6 +90,15 @@ gtdbtk/gtdbtk-2.1.1.sif:
         - Database location set by GTDBTK_DATA_PATH environment variable
         - Databases are located at /mnt/data/databases/gtdbtk/release207_v2
     Website: https://github.com/Ecogenomics/GTDBTk
+    Working: Yes
+
+gtotree/gtotree-1.7.08.sif
+    Version: 1.7.08
+    Source: https://depot.galaxyproject.org/singularity/das_tool%3A1.1.6--r42hdfd78af_0
+    Notes:
+        - Hug et al. HMM models in /mnt/databases/GtoTree
+        - other models can be downloaded
+    Website: https://gothub.com/AstrobioMike/GToTree
     Working: Yes
 
 htseq/htseq-2.0.2.sif
@@ -85,6 +122,13 @@ kaiju/kaiju-1.9.0.sif:
     Website: https://github.com/bioinformatics-centre/kaiju
     Working: Yes
 
+maxbin2/maxbin-2.2.7.sif:
+    Version: 2.2.7
+    Notes: -
+    Source: https://depot.galaxyproject.org/singularity/maxbin2%3A2.2.7--he1b5a44_2
+    Website: https://sourceforge.net/projects/maxbin2/
+    Working: Yes
+
 medaka/medaka-1.6.0.sif:
     Version: 1.6.0
     Description: Medaka improves draft seqences assembled by Flye 
@@ -93,7 +137,21 @@ medaka/medaka-1.6.0.sif:
       - The medaka_consensus binary runs medaka with a set of default parameters.
     Website: https://github.com/nanoporetech/medaka
     Working: Yes
-    
+
+megahit/megahit-1.2.9,sif
+    Version: 1.2.9
+    Source: https://depot.galaxyproject.org/singularity/megahit%3A1.2.9--h8b12597_0
+    Notes: -
+    Website: https://github.com/voutcn/megahit
+    Working: Yes
+
+metabat2/metabat-2.15.sif
+    Version: 2.15
+    Source: https://depot.galaxyproject.org/singularity/metabat2%3A2.15--h986a166_1
+    Notes: -
+    Website: https://bitbucket.org/berkeleylab/metabat/src/master/
+    Working: Yes
+
 metabolic-c/metabolic-c-4.0.0.sif:
     Version: 4.0.0 
     Source: metabolic-c/metabolic-c-4.0.0.def
@@ -120,6 +178,13 @@ miniasm/miniasm-0.3.sif:
     Source: miniasm/miniasm-0.3.def
     Notes: -
     Website: https://github.com/lh3/miniasm
+    Working: Yes
+
+muscle/muscle-5.1.sif:
+    Version: 5.1
+    Source: https://depot.galaxyproject.org/singularity/muscle%3A5.1--h9f5acd7_1
+    Notes: -
+    Website: https://www.drive5.com/muscle/
     Working: Yes
 
 nextpolish/nextpolish-1.4.0.sif:
@@ -152,6 +217,13 @@ prokka/prokka-1.14.6.sif:
     Source: https://depot.galaxyproject.org/singularity/prokka%3A1.14.6--pl5321hdfd78af_4
     Notes: -
     Website: https://github.com/tseemann/prokka
+    Working: Yes
+
+quast/quast-5.2.0.sif:
+    Version: 5.2.0
+    Source: https://depot.galaxyproject.org/singularity/quast%3A5.2.0--py39pl5321h2add14b_2
+    Website: https://github.com/ablab/quast
+    Notes: -
     Working: Yes
 
 raven/raven-1.8.1.sif:
@@ -211,6 +283,13 @@ unicycler/unicycler-0.5.0.sif:
     Source: unicycler/unicycler-0.5.0.def 
     Notes: -
     Website: https://github.com/rrwick/Unicycler
+    Working: Yes
+
+usearch/usearch-11.0.667.sif:
+    Version: 11.0.667
+    Source: usearch/usearch-11.0.667.def
+    Notes: -
+    Website: https://www.drive5.com/usearch/
     Working: Yes
 
 vibrant/vibrant-1.2.1.sif:
